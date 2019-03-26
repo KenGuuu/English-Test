@@ -1,0 +1,612 @@
+#include <pch.h>
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <string>
+#include <thread>
+#include <fstream>
+#include <algorithm>
+#include <vector>
+#include <cstdio>
+#include <cerrno>
+#include <stdio.h>
+#include <map>
+#include <iterator>
+#include <windows.h>
+
+using namespace std;
+
+void starter();
+void menu();
+void wybor();
+void listaslowek();
+void noweslowko();
+void informacje();
+void powrot();
+void koniec();
+void usunslowko();
+void test();
+void zasady();
+void pytania();
+void listawybor();
+void wyborpolang();
+void wyborpol();
+void wyborang();
+
+
+int main()
+{
+	starter();
+	menu();
+
+}
+
+void starter()
+{
+	system("CLS");
+
+
+	Sleep(100);
+	HANDLE  hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | BACKGROUND_GREEN);
+	cout << "                                                          " << endl;  Sleep(100);
+	cout << "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;  Sleep(100);
+	cout << "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;  Sleep(100);
+	cout << "|||||||||||||||||||||||           ||||||||||||||||||||||||" << endl;  Sleep(100);
+	cout << "|||||||||||||||||||||||  ENGLISH  ||||||||||||||||||||||||" << endl;  Sleep(100);
+	cout << "|||||||||||||||||||||||    TEST   ||||||||||||||||||||||||" << endl;  Sleep(100);
+	cout << "|||||||||||||||||||||||           ||||||||||||||||||||||||" << endl;  Sleep(100);
+	cout << "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;  Sleep(100);
+	cout << "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;  Sleep(100);
+	cout << "                                                          " << endl;  Sleep(100);
+	cout << "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;  Sleep(100);
+	cout << "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;  Sleep(100);
+	cout << "|||||||||||||||||||||||           ||||||||||||||||||||||||" << endl;  Sleep(100);
+	cout << "|||||||||||||||||||||||  WELCOME  ||||||||||||||||||||||||" << endl;  Sleep(100);
+	cout << "|||||||||||||||||||||||           ||||||||||||||||||||||||" << endl;  Sleep(100);
+	cout << "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;  Sleep(100);
+	cout << "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;  Sleep(100);
+
+	system("pause");
+}
+
+void koniec()
+{
+	system("CLS");
+	for (int i = 5; i > 0; i--)
+	{
+		cout << i;
+		this_thread::sleep_for(chrono::seconds(1));
+		system("CLS");
+	}
+	cout << "                                                          " << endl;  Sleep(100);
+	cout << "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;  Sleep(100);
+	cout << "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;  Sleep(100);
+	cout << "|||||||||||||||||||||           ||||||||||||||||||||||||||" << endl;  Sleep(100);
+	cout << "|||||||||||||||||||||  Goodbye! ||||||||||||||||||||||||||" << endl;
+	cout << "|||||||||||||||||||||           ||||||||||||||||||||||||||" << endl;  Sleep(100);
+	cout << "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;  Sleep(100);
+	cout << "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
+	cout << "                                                          " << endl;  Sleep(100);
+	cout << "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
+	cout << "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;  Sleep(100);
+	cout << "||||||||||||||                           |||||||||||||||||" << endl;  Sleep(100);
+	cout << "|||||||||||||| Press any button to exit! |||||||||||||||||" << endl;
+	cout << "||||||||||||||                           |||||||||||||||||" << endl;  Sleep(100);
+	cout << "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;  Sleep(100);
+	cout << "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;  Sleep(100);
+	cout << "                                                          " << endl;
+	system("PAUSE");
+	exit(0);
+}
+
+void powrot()
+{
+	system("PAUSE");
+
+	menu();
+}
+
+void listaslowek()
+{
+	system("CLS");
+
+	vector<string>slowka;
+
+	ifstream lista("lista.txt");
+	string line;
+	while (getline(lista, line))
+	{
+		slowka.push_back(line);
+	}
+	sort(slowka.begin(), slowka.end());
+
+	cout << "[ANG - PL] List of words:" << endl;
+
+	for (int i = 0; i < slowka.size(); i++)
+	{
+		cout << slowka[i] << endl;
+	}
+	cout << endl;
+	listawybor();
+}
+
+void listawybor()
+{
+
+	cout << endl;
+	cout << "1. [ANG - POL]" << endl;
+	cout << "2. [POL-ANG]" << endl;
+	cout << "3. [ANG]" << endl;
+	cout << "4. [POL]" << endl;
+	cout << "0. Back" << endl;
+	cout << "--> ";
+
+	char znak;
+	cin >> znak;
+
+	switch (znak)
+	{
+	case '1': listaslowek();  break;
+	case '2': wyborpolang();  break;
+	case '3': wyborang();     break;
+	case '4': wyborpol();     break;
+	case '0': menu();       break;
+	}
+}
+
+void wyborpolang()
+{
+	system("CLS");
+
+	vector<string>slowka;
+
+	ifstream lista("lista2.txt");
+	string line;
+	while (getline(lista, line))
+	{
+		slowka.push_back(line);
+	}
+	sort(slowka.begin(), slowka.end());
+
+	cout << "[PL - ANG] List of words:" << endl;
+
+	for (int i = 0; i < slowka.size(); i++)
+	{
+		cout << slowka[i] << endl;
+	}
+	cout << endl;
+	listawybor();
+}
+
+void wyborpol()
+{
+	system("CLS");
+
+	vector<string>slowka;
+
+	ifstream lista("listaPOL.txt");
+	string line;
+	while (getline(lista, line))
+	{
+		slowka.push_back(line);
+	}
+	sort(slowka.begin(), slowka.end());
+
+	cout << "[POL] List of words:" << endl;
+
+	for (int i = 0; i < slowka.size(); i++)
+	{
+		cout << slowka[i] << endl;
+	}
+	cout << endl;
+	listawybor();
+}
+
+void wyborang()
+{
+	system("CLS");
+
+	vector<string>slowka;
+
+	ifstream lista("listaANG.txt");
+	string line;
+	while (getline(lista, line))
+	{
+		slowka.push_back(line);
+	}
+	sort(slowka.begin(), slowka.end());
+
+	cout << "[ANG] List of words:" << endl;
+
+	for (int i = 0; i < slowka.size(); i++)
+	{
+		cout << slowka[i] << endl;
+	}
+	cout << endl;
+	listawybor();
+}
+
+void noweslowko()
+{
+	system("CLS");
+
+	string NewWordAng;
+	string NewWordPol;
+	cout << "Write new word in english: ";
+	cin >> NewWordAng;
+	cout << "In polish: ";
+	cin >> NewWordPol;
+	map<string, string> list;
+	list.insert(pair < string, string >(NewWordAng, NewWordPol));
+
+	ifstream sprawdzanie("listaANG.txt");
+	string slowo;
+	while (getline(sprawdzanie, slowo))
+	{
+		if (NewWordAng == slowo)
+		{
+			cout << endl << "This word is currently in the list of words!!" << endl;
+			system("PAUSE");
+			menu();
+		}
+	}
+
+	ofstream lista;
+	lista.open("lista.txt", ofstream::app);
+	lista << endl << NewWordAng << " - " << list[NewWordAng];
+	lista.close();
+
+	ofstream lista2;
+	lista2.open("lista2.txt", ofstream::app);
+	lista2 << endl << list[NewWordAng] << " - " << NewWordAng;
+	lista2.close();
+
+	ofstream listaANG;
+	listaANG.open("listaANG.txt", ofstream::app);
+	listaANG << endl << NewWordAng;
+	listaANG.close();
+
+	ofstream listaPOL;
+	listaPOL.open("listaPOL.txt", ofstream::app);
+	listaPOL << endl << list[NewWordAng];
+	listaPOL.close();
+
+	cout << endl << "Word '" << NewWordAng << "' has been successfully added" << endl;
+
+
+	powrot();
+}
+
+void usunslowko()
+{
+	system("CLS");
+
+	string decyzja;
+	int temp;
+
+	cout << "Remove all words?? [Y/N]: ";
+	cin >> decyzja;
+
+	if (decyzja == "Y")
+	{
+		fstream usuwanieall;
+		usuwanieall.open("listaANG.txt", ios::out | ios::trunc);
+		usuwanieall.close();
+		fstream usuwanieall2;
+		usuwanieall2.open("listaPOL.txt", ios::out | ios::trunc);
+		usuwanieall2.close();
+		fstream usuwanieall3;
+		usuwanieall3.open("lista.txt", ios::out | ios::trunc);
+		usuwanieall3.close();
+		fstream usuwanieall4;
+		usuwanieall4.open("lista2.txt", ios::out | ios::trunc);
+		usuwanieall4.close();
+		system("CLS");
+		cout << "All words have been deleted successfully!" << endl;
+		powrot();
+	}
+	else if (decyzja == "N")
+	{
+		system("CLS");
+	}
+	else
+	{
+		usunslowko();
+	}
+	string DeletedWord;
+	char myslnik = '-';
+	cout << "Write a word to delete: ";
+	cin >> DeletedWord;
+
+	map<string, string>dousuniecia;
+	string slowko1;
+	string slowko2;
+
+	ifstream sprawdzanie("listaANG.txt");
+	string slowo;
+	while (getline(sprawdzanie, slowo))
+	{
+		if (DeletedWord == slowo)
+		{
+			temp = 1;
+		}
+		else
+		{
+			temp = 0;
+		}
+	}
+
+	if (temp==0)
+	{
+		cout << endl << "The given word is not in the list!! You must add it before!!" << endl;
+		system("PAUSE");
+		menu();
+	}
+
+	ifstream lista;
+	lista.open("lista.txt");
+
+	while (lista >> slowko1 >> myslnik >> slowko2)
+	{
+		dousuniecia.insert(pair<string, string>(slowko1, slowko2));
+	}
+
+	ofstream listaANG;
+	listaANG.open("listaANG.txt");
+	for (auto it = dousuniecia.begin(); it != dousuniecia.end(); it++)
+	{
+		if (it->first != DeletedWord)
+		{
+			listaANG << endl << it->first;
+		}
+	}
+	listaANG.close();
+
+	ofstream listaPOL;
+	listaPOL.open("listaPOL.txt");
+	for (auto it = dousuniecia.begin(); it != dousuniecia.end(); it++)
+	{
+		if (it->first != DeletedWord)
+		{
+			listaPOL << endl << it->second;
+		}
+	}
+	listaPOL.close();
+
+	ofstream lista1;
+	lista1.open("lista.txt");
+	for (auto it = dousuniecia.begin(); it != dousuniecia.end(); it++)
+	{
+		if (it->first != DeletedWord)
+		{
+			lista1 << endl << it->first << " - " << it->second;
+		}
+	}
+	lista1.close();
+
+	ofstream lista2;
+	lista2.open("lista2.txt");
+	for (auto it = dousuniecia.begin(); it != dousuniecia.end(); it++)
+	{
+		if (it->first != DeletedWord)
+		{
+			lista2 << endl << it->second << " - " << it->first;
+		}
+	}
+	lista2.close();
+
+
+	cout << endl << "Word '" << DeletedWord << "' has been successfully deleted" << endl;
+	powrot();
+}
+
+void test()
+{
+	system("CLS");
+
+	zasady();
+	pytania();
+
+	powrot();
+}
+
+void zasady()
+{
+	string potwierdzenie;
+	cout << "RULES: " << endl;
+	cout << "1. You have to translate words from English into Polish and vice versa" << endl;
+	cout << "2. You have to start each word with a capital letter" << endl;
+	cout << "3. Do not use Polish characters" << endl;
+	cout << "READY? WRITE 'YES': ";
+	cin >> potwierdzenie;
+	if (potwierdzenie != "YES")
+	{
+		cout << endl << "Ok, maybe next time :)" << endl;
+		powrot();
+	}
+}
+
+void pytania()
+{
+	system("CLS");
+
+	map<string, string>pula;
+	string ang;
+	string pol;
+	char znak = '-';
+
+	ifstream pytania;
+	pytania.open("lista.txt");
+
+	while (pytania >> ang >> znak >> pol)
+	{
+		pula.insert(pair<string, string>(ang, pol));
+	}
+
+	ifstream testlista("listaANG.txt");
+	string testslowo;
+	vector<string> testslowa;
+	while (getline(testlista, testslowo))
+	{
+		testslowa.push_back(testslowo);
+	}
+
+	int slowa = testslowa.size() - 1;
+
+	string *pytanie = new string[slowa];
+	string odpowiedz;
+	vector<int>liczby;
+	int pop = 0;
+	int np = 0;
+	int i = 0;
+	int *temp = new int[slowa + 1];
+	for (auto it = pula.begin(); it != pula.end(); it++)
+	{
+		pytanie[i] = it->first;
+		i++;
+	}
+
+
+	cout << "DIFFICULTY LEVELS: " << endl;
+	cout << "1. Easy (" << (slowa / 3) << " word[s])" << endl;
+	cout << "2. Normal (" << (slowa / 2) << " words)" << endl;
+	cout << "3. Hard (" << (slowa) << " words)" << endl;
+	cout << endl << "Choose the difficulty: ";
+	char wybor;
+	cin >> wybor;
+	switch (wybor)
+	{
+	case '1':
+		system("CLS");
+		srand(time(NULL));
+		for (int i = 0; i < slowa / 3; i++)
+		{
+
+			cout << i + 1 << ". " << pytanie[i] << endl;
+			cin >> odpowiedz;
+			if (odpowiedz == pula[pytanie[i]])
+			{
+				cout << endl << "Correct!" << endl;
+				pop += 1;
+				this_thread::sleep_for(chrono::seconds(2));
+			}
+			else
+			{
+				cout << endl << "Incorrect!" << endl;
+				np += 1;
+				this_thread::sleep_for(chrono::seconds(2));
+			}
+			system("CLS");
+		}
+		cout << "THE END" << endl << endl;
+		cout << "Correct answers: " << pop << endl;
+		cout << "Incorrect answers: " << np << endl << endl;
+		break;
+
+	case '2':
+		system("CLS");
+		srand(time(NULL));
+		for (int i = 0; i < slowa / 2; i++)
+		{
+
+			cout << i + 1 << ". " << pytanie[i] << endl;
+			cin >> odpowiedz;
+			if (odpowiedz == pula[pytanie[i]])
+			{
+				cout << endl << "Correct!" << endl;
+				pop += 1;
+				this_thread::sleep_for(chrono::seconds(2));
+			}
+			else
+			{
+				cout << endl << "Incorrect!" << endl;
+				np += 1;
+				this_thread::sleep_for(chrono::seconds(2));
+			}
+			system("CLS");
+		}
+		cout << "THE END" << endl << endl;
+		cout << "Correct answers: " << pop << endl;
+		cout << "Incorrect answers: " << np << endl << endl;
+		break;
+
+
+	case '3':
+		system("CLS");
+		srand(time(NULL));
+		for (int i = 0; i < slowa; i++)
+		{
+
+			cout << i + 1 << ". " << pytanie[i] << endl;
+			cin >> odpowiedz;
+			if (odpowiedz == pula[pytanie[i]])
+			{
+				cout << endl << "Correct!" << endl;
+				pop += 1;
+				this_thread::sleep_for(chrono::seconds(2));
+			}
+			else
+			{
+				cout << endl << "Incorrect!" << endl;
+				np += 1;
+				this_thread::sleep_for(chrono::seconds(2));
+			}
+			system("CLS");
+		}
+		cout << "THE END" << endl << endl;
+		cout << "Correct answers: " << pop << endl;
+		cout << "Incorrect answers: " << np << endl << endl;
+		break;
+	}
+
+}
+
+void informacje()
+{
+	system("CLS");
+
+	ifstream infolista("listaANG.txt");
+	string infoslowo;
+	vector<string> infoslowa;
+	while (getline(infolista, infoslowo))
+	{
+		infoslowa.push_back(infoslowo);
+	}
+
+	cout << "The English test made for an IT class!" << endl;
+	cout << endl << "List of words: " << (infoslowa.size() - 1) << endl;
+	cout << "Creators: Przemek Szumczyk & Bartek Modliszewski" << endl;
+	cout << "License: GNU General Public License" << endl;
+	powrot();
+}
+
+void wybor()
+{
+	char liczba;
+	cout << "Select the tab: ";
+	cin >> liczba;
+	switch (liczba)
+	{
+	case '1': listaslowek(); break;
+	case '2': noweslowko(); break;
+	case '3': usunslowko(); break;
+	case '4': test(); break;
+	case '5': informacje(); break;
+	case '6': koniec(); break;
+	default: cout << endl << "ERROR!! Please choose another option! " << endl; system("PAUSE"); menu();
+	}
+}
+
+void menu()
+{
+	system("CLS");
+
+	cout << "1. List of words" << endl;
+	cout << "2. Add word" << endl;
+	cout << "3. Remove word" << endl;
+	cout << "4. TEST!!!" << endl;
+	cout << "5. Informations" << endl;
+	cout << "6. Shut down" << endl;
+	wybor();
+}
