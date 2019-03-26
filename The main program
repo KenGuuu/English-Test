@@ -283,7 +283,7 @@ void usunslowko()
 	system("CLS");
 
 	string decyzja;
-	int temp;
+	int temp = 0;
 
 	cout << "Remove all words?? [Y/N]: ";
 	cin >> decyzja;
@@ -329,11 +329,11 @@ void usunslowko()
 	{
 		if (DeletedWord == slowo)
 		{
-			temp = 1;
+			temp += 1;
 		}
 		else
 		{
-			temp = 0;
+			temp += 0;
 		}
 	}
 
