@@ -576,7 +576,7 @@ void informacje()
 
 	cout << "The English test made for an IT class!" << endl;
 	cout << endl << "List of words: " << (infoslowa.size() - 1) << endl;
-	cout << "Creators: Przemek Szumczyk & Bartek Modliszewski" << endl;
+	cout << "Creator: Przemyslaw Szumczyk" << endl;
 	cout << "License: GNU General Public License" << endl;
 	powrot();
 }
